@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module JAM (CLK, RST, W, J, Cost, MatchCount, MinCost, Valid);
 input CLK;
 input RST;
@@ -144,5 +143,6 @@ always @(posedge CLK or posedge RST) begin
         endcase
     end
 end
+
 
 endmodule
