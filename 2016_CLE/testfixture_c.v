@@ -1,18 +1,11 @@
 `timescale 1ns/10ps
-`include "./CLE_syn.v"
+`include "tsmc13.v"
 `define CYCLE     10           	       // Modify your clock period here
 `define SDFFILE   "./CLE_syn.sdf"      // Modify your sdf file name
 `define EXP       "./sram_c.dat"
 `define DEL       1
 `include          "./rom_128x8_c.v"
 `include          "./sram_1024x8.v"
-
-// tsmc13
-// `include "tsmc13.v"
-
-// U18
-`include "/mnt4/CBDK018_UMC_Faraday_v1.1_all/CBDK018_UMC_Faraday_v1.1/CIC/Verilog/fsa0m_a_generic_core_21.lib"
-`include "/mnt4/CBDK018_UMC_Faraday_v1.1_all/CBDK018_UMC_Faraday_v1.1/CIC/Verilog/fsa0m_a_t33_generic_io_21.lib"
 
 module test;
 reg         clk;
@@ -210,6 +203,7 @@ initial begin
 end
    
 endmodule
+
 
 
 
