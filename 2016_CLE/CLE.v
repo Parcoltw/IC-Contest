@@ -11,6 +11,9 @@ output        sram_wen;
 output        finish;
 
 integer i;
+reg [9:0] sram_a;
+reg [7:0] sram_d;
+reg sram_wen;
 reg [2:0] cs, ns;
 reg [4:0] X, Y;
 reg [3:0] new_label;
@@ -35,10 +38,6 @@ localparam WAIT_2 = 3'd4;
 localparam RESCAN = 3'd5;
 localparam WAIT_3 = 3'd6;
 localparam RELABEL = 3'd7;
-
-reg [9:0] sram_a;
-reg [7:0] sram_d;
-reg       sram_wen;
 
 always @(negedge clk) begin
     if (reset) begin
@@ -330,5 +329,6 @@ always @(posedge clk) begin
         end
     end
 end
+
 
 endmodule
