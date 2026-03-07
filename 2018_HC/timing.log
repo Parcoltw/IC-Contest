@@ -1,0 +1,70 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : huffman
+Version: Q-2019.12
+Date   : Sat Mar  7 23:15:01 2026
+****************************************
+
+Operating Conditions: slow   Library: slow
+Wire Load Model Mode: top
+
+  Startpoint: total_groups_reg[1]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: group_count_reg[5][7]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  huffman            tsmc13_wl10           slow
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.50       0.50
+  total_groups_reg[1]/CK (DFFX1)           0.00       0.50 r
+  total_groups_reg[1]/QN (DFFX1)           0.79       1.29 r
+  U649/Y (NAND2X1)                         0.36       1.65 f
+  U648/Y (BUFX20)                          0.24       1.89 f
+  U694/Y (CLKINVX1)                        0.11       2.01 r
+  U711/Y (NAND2X1)                         0.14       2.15 f
+  U692/Y (NAND2X2)                         0.32       2.47 r
+  U820/Y (NOR2XL)                          0.20       2.67 f
+  U651/Y (CLKBUFX3)                        0.56       3.23 f
+  U1297/Y (AOI222XL)                       0.73       3.96 r
+  U1296/Y (OAI211X1)                       0.28       4.24 f
+  add_174/A[1] (huffman_DW01_add_0)        0.00       4.24 f
+  add_174/U1_1/CO (ADDFXL)                 0.73       4.96 f
+  add_174/U1_2/CO (ADDFXL)                 0.53       5.49 f
+  add_174/U1_3/CO (ADDFXL)                 0.53       6.02 f
+  add_174/U1_4/CO (ADDFXL)                 0.53       6.54 f
+  add_174/U1_5/CO (ADDFXL)                 0.53       7.07 f
+  add_174/U1_6/CO (ADDFXL)                 0.53       7.60 f
+  add_174/U1_7/Y (XOR3X1)                  0.33       7.93 f
+  add_174/SUM[7] (huffman_DW01_add_0)      0.00       7.93 f
+  U863/Y (NAND2X1)                         0.37       8.30 r
+  U709/Y (INVX1)                           0.38       8.68 f
+  U855/Y (AOI21X1)                         0.30       8.98 r
+  U854/Y (OAI221XL)                        0.28       9.26 f
+  group_count_reg[5][7]/D (EDFFX2)         0.00       9.26 f
+  data arrival time                                   9.26
+
+  clock clk (rise edge)                   10.00      10.00
+  clock network delay (ideal)              0.50      10.50
+  clock uncertainty                       -0.10      10.40
+  group_count_reg[5][7]/CK (EDFFX2)        0.00      10.40 r
+  library setup time                      -0.59       9.81
+  data required time                                  9.81
+  -----------------------------------------------------------
+  data required time                                  9.81
+  data arrival time                                  -9.26
+  -----------------------------------------------------------
+  slack (MET)                                         0.55
+
+
+1
