@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module CLE (clk, reset, rom_q, rom_a, sram_q, sram_a, sram_d, sram_wen, finish);
 input         clk;
 input         reset;
@@ -332,3 +331,4 @@ always @(posedge clk) begin
 end
 
 endmodule
+
