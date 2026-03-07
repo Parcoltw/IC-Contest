@@ -1,4 +1,5 @@
 `timescale 1ns/10ps
+`include "./CONVEX_syn.v"
 `define CYCLE      8.0  
 `define SDFFILE    "./CONVEX_syn.sdf"
 `define MAX_CYCLE  10000
