@@ -35,7 +35,7 @@ always @(*) begin
     M_next[6] = {M[6][6:0], 1'b1};
 end
 
-always @(posedge clk) begin
+always @(posedge clk or posedge reset) begin
     if (reset)
         cs <= IDLE;
     else
@@ -87,7 +87,7 @@ always @(*) begin
     endcase
 end
 
-always @(posedge clk) begin
+always @(posedge clk or posedge reset) begin
     CNT_valid <= 0;
     code_valid <= 0;
     case (cs)
