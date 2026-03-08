@@ -72,7 +72,7 @@ always @(*) begin
     end
 end
 
-always @(posedge CLK) begin
+always @(posedge CLK or posedge RST) begin
     if (RST) begin
         cs <= INIT_REQ;
     end
@@ -81,7 +81,7 @@ always @(posedge CLK) begin
     end
 end
 
-always @(posedge CLK) begin
+always @(posedge CLK or posedge RST) begin
     if (RST) begin
         P0 <= 20'd0;
         P1 <= 20'd0;
