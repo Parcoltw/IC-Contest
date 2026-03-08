@@ -39,7 +39,7 @@ reg [9:0] sram_a;
 reg [7:0] sram_d;
 reg       sram_wen;
 
-always @(negedge clk) begin
+always @(negedge clk or posedge reset) begin
     if (reset) begin
         sram_a <= 10'd0;
         sram_d <= 8'd0;
@@ -127,14 +127,14 @@ always @(*) begin
     end
 end
 
-always @(posedge clk) begin
+always @(posedge clk or posedge reset) begin
     if (reset)
         cs <= WAIT;
     else
         cs <= ns;
 end
 
-always @(posedge clk) begin
+always @(posedge clk or posedge reset) begin
     if (reset) begin
         X <= 5'd0;
         Y <= 5'd0;
@@ -316,7 +316,7 @@ always @(*) begin
     endcase
 end
 
-always @(posedge clk) begin
+always @(posedge clk or posedge reset) begin
     if (reset) begin
         for (i=0; i<=32; i=i+1) begin
             fifo[i] <= 4'd0;
@@ -331,4 +331,5 @@ always @(posedge clk) begin
 end
 
 endmodule
+
 
