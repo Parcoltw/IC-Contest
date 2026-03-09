@@ -12,9 +12,9 @@ uniquify
 set_fix_multiple_port_nets -all -buffer_constants [get_designs *]
 
 #Synthesis all design
-compile -map_effort high -area_effort high
+#compile -map_effort high -area_effort high
 #compile -map_effort high -area_effort high -inc
-#compile_ultra
+compile_ultra
 
 write -format ddc     -hierarchy -output "JAM_syn.ddc"
 write_sdf -version 1.0  JAM_syn.sdf
