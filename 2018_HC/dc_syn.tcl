@@ -1,7 +1,7 @@
 #Read All Files
 read_file -format verilog  huffman.v
 #read_file -format sverilog  huffman.v
-current_design CONVEX
+current_design huffman
 link
 
 #Setting Clock Constraints
