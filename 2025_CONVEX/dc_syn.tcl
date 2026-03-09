@@ -23,4 +23,3 @@ write -format verilog -hierarchy -output CONVEX_syn.v
 report_area > area.log
 report_timing > timing.log
 report_qor   >  CONVEX_syn.qor
-#write_parasitics -output CONVEX_syn.spef
