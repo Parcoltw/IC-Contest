@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : CLE
+Version: Q-2019.12
+Date   : Mon Mar  9 18:44:10 2026
+****************************************
+
+Library(s) Used:
+
+    slow (File: /usr/cad/CBDK/CBDK_IC_Contest_v2.5/SynopsysDC/db/slow.db)
+
+Number of ports:                           45
+Number of nets:                          2390
+Number of cells:                         2287
+Number of combinational cells:           1866
+Number of sequential cells:               416
+Number of macros/black boxes:               0
+Number of buf/inv:                         86
+Number of references:                      43
+
+Combinational area:              14974.462928
+Buf/Inv area:                      322.505995
+Noncombinational area:           13540.159382
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                 28514.622309
+Total area:                 undefined
+1
