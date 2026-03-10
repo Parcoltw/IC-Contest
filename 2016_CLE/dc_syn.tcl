@@ -6,6 +6,7 @@ link
 
 #Setting Clock Constraints
 source -echo -verbose CLE.sdc
+set_fix_hold                [all_clocks]
 check_design
 set high_fanout_net_threshold 0
 uniquify
