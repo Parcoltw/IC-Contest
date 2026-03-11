@@ -1,6 +1,4 @@
 `timescale 1ns/10ps
-`include "./CONVEX_syn.v"
-`include "./tsmc13.v"
 `define CYCLE      8.0  
 `define SDFFILE    "./CONVEX_syn.sdf"
 `define MAX_CYCLE  10000
