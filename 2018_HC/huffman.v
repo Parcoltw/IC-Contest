@@ -112,14 +112,7 @@ always @(posedge clk) begin
         case (cs)
             READ: begin 
                 if (gray_valid) begin
-                    case (gray_data)
-                        8'h01: group_count[1] <= group_count[1] + 8'd1;
-                        8'h02: group_count[2] <= group_count[2] + 8'd1;
-                        8'h03: group_count[3] <= group_count[3] + 8'd1;
-                        8'h04: group_count[4] <= group_count[4] + 8'd1;
-                        8'h05: group_count[5] <= group_count[5] + 8'd1;
-                        8'h06: group_count[6] <= group_count[6] + 8'd1;
-                    endcase
+					group_count[gray_data] <= group_count[gray_data] + 8'd1;
                     counter <= counter + 7'd1;
                 end
             end
