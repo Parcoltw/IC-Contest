@@ -1,6 +1,4 @@
 `timescale 1ns/10ps
-`include "./JAM_syn.v"
-`include "./tsmc13.v"
 `define CYCLE      10.0  
 `define SDFFILE    "./JAM_syn.sdf"
 `define End_CYCLE  10000000
