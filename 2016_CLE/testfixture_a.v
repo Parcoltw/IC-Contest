@@ -1,6 +1,4 @@
 `timescale 1ns/10ps
-`include "./CLE_syn.v"
-`include "./tsmc13.v"
 `define CYCLE     10           	       // Modify your clock period here
 `define SDFFILE   "./CLE_syn.sdf"      // Modify your sdf file name
 `define EXP       "./sram_a.dat"
@@ -204,6 +202,7 @@ initial begin
 end
    
 endmodule
+
 
 
 
