@@ -88,7 +88,7 @@ always @(*) begin
     endcase
 end
 
-always @(posedge clk) begin
+	always @(posedge clk or posedge reset) begin
     if (reset) begin
         CNT_valid <= 1'd0;
         code_valid <= 1'd0;
