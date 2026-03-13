@@ -23,4 +23,3 @@ write -format verilog -hierarchy -output Bicubic_syn.v
 report_area > area.log
 report_timing > timing.log
 report_qor   >  Bicubic_syn.qor
-write_parasitics -output Bicubic_syn.spef
