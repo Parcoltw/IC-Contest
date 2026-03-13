@@ -16,6 +16,7 @@ reg [1:0] mode;
 reg [7:0] fifo1 [0:3];
 reg [7:0] fifo2 [0:3];
 reg [7:0] result;
+    
 reg [7:0] alu_pn1, alu_p0, alu_p1, alu_p2;
 reg [15:0] alu_x;
 wire [7:0] Px;
@@ -25,6 +26,7 @@ wire [7:0] rom_q;
 reg [13:0] sram_a;
 reg sram_wen;
 wire [7:0] sram_q;
+    
 reg [5:0] Target_X, Target_Y;
 wire is_last_X = (Target_X == TW - 6'd1);
 wire is_last_Y = (Target_Y == TH - 6'd1);
@@ -346,5 +348,6 @@ wire signed [29:0] P_result = sum_rnd >>> 17;
 assign Px = (P_result < 30'sd0) ? 8'd0 :
             (P_result > 30'sd255) ? 8'd255 :
             P_result[7:0];
+
 
 endmodule
