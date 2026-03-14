@@ -1,0 +1,65 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : CLE
+Version: Q-2019.12
+Date   : Sat Mar 14 22:21:22 2026
+****************************************
+
+Operating Conditions: slow   Library: slow
+Wire Load Model Mode: top
+
+  Startpoint: Y_reg[2] (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: eq_table_reg[3][6]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  CLE                tsmc13_wl10           slow
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.50       0.50
+  Y_reg[2]/CK (DFFRX2)                     0.00       0.50 r
+  Y_reg[2]/Q (DFFRX2)                      0.88       1.38 r
+  U2906/Y (NOR2X1)                         0.39       1.77 f
+  U2882/Y (NAND2XL)                        0.74       2.51 r
+  U2405/Y (OAI22XL)                        0.34       2.85 f
+  U2802/Y (AOI211XL)                       0.54       3.39 r
+  U2268/Y (CLKBUFX3)                       0.28       3.67 r
+  U2814/Y (CLKINVX1)                       0.34       4.01 f
+  U2342/Y (NAND2X1)                        0.66       4.67 r
+  U2345/Y (CLKINVX1)                       0.67       5.34 f
+  U2923/Y (OAI31X1)                        0.49       5.82 r
+  U2924/Y (INVX3)                          0.51       6.33 f
+  U2515/Y (OAI2BB1X1)                      0.62       6.95 r
+  U2300/Y (NOR2BX2)                        0.36       7.31 f
+  U3749/Y (NAND2X1)                        0.59       7.90 r
+  U2457/Y (INVXL)                          0.25       8.15 f
+  U2456/Y (BUFX2)                          0.48       8.63 f
+  U2688/Y (AOI211XL)                       0.58       9.21 r
+  U2687/Y (OAI211XL)                       0.47       9.68 f
+  U4174/Y (AO21X1)                         0.42      10.10 f
+  eq_table_reg[3][6]/D (DFFRX1)            0.00      10.10 f
+  data arrival time                                  10.10
+
+  clock clk (rise edge)                   10.00      10.00
+  clock network delay (ideal)              0.50      10.50
+  clock uncertainty                       -0.10      10.40
+  eq_table_reg[3][6]/CK (DFFRX1)           0.00      10.40 r
+  library setup time                      -0.22      10.18
+  data required time                                 10.18
+  -----------------------------------------------------------
+  data required time                                 10.18
+  data arrival time                                 -10.10
+  -----------------------------------------------------------
+  slack (MET)                                         0.07
+
+
+1
