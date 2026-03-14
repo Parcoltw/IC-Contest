@@ -39,17 +39,17 @@ reg [9:0] sram_a;
 reg [7:0] sram_d;
 reg       sram_wen;
 
-always @(negedge clk or posedge reset) begin
+always @(*) begin
     if (reset) begin
-        sram_a <= 10'd0;
-        sram_d <= 8'd0;
-        sram_wen <= 1'b1;
-        rom_a <= 7'd0;
+        sram_a = 10'd0;
+        sram_d = 8'd0;
+        sram_wen = 1'b1;
+        rom_a = 7'd0;
     end else begin
-        sram_a <= {X, Y}; 
-        sram_d <= gold_label;       
-        sram_wen <= (cs == SCAN || cs == RELABEL) ? 1'b0 : 1'b1;
-        rom_a <= rom_a_buffer;
+        sram_a = {X, Y}; 
+        sram_d = gold_label;       
+        sram_wen = (cs == SCAN || cs == RELABEL) ? 1'b0 : 1'b1;
+        rom_a = rom_a_buffer;
     end
 end
 
