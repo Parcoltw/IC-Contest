@@ -1,0 +1,33 @@
+Warning: Design 'Bicubic' has '2' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : area
+Design : Bicubic
+Version: Q-2019.12
+Date   : Sun Mar 15 00:57:13 2026
+****************************************
+
+Library(s) Used:
+
+    slow (File: /usr/cad/CBDK/CBDK_IC_Contest_v2.5/SynopsysDC/db/slow.db)
+
+Number of ports:                           39
+Number of nets:                         13278
+Number of cells:                        12557
+Number of combinational cells:          12459
+Number of sequential cells:                96
+Number of macros/black boxes:               0
+Number of buf/inv:                       2658
+Number of references:                     173
+
+Combinational area:             156243.972586
+Buf/Inv area:                    16885.735113
+Noncombinational area:            3163.953529
+Macro/Black Box area:                0.000000
+Net Interconnect area:         1218659.402588
+
+Total cell area:                159407.926116
+Total area:                    1378067.328704
+
+Information: This design contains black box (unknown) components. (RPT-8)
+1
