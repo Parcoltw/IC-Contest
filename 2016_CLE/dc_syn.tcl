@@ -5,7 +5,7 @@ current_design CLE
 link
 
 #Setting Clock Constraints
-source -echo -verbose CLE.sdc
+source -echo -verbose CLE_DC.sdc
 set_fix_hold                [all_clocks]
 check_design
 set high_fanout_net_threshold 0
