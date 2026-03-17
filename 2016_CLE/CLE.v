@@ -75,6 +75,7 @@ always @(*) begin
                     gold_label = left;
                 else
                     gold_label = new_label;
+                
                 if (top_left != 4'd0 && top_right != 4'd0 && top_left != top_right) begin
                     eq = 2'd1;
                     check_eq = 1'd1;
