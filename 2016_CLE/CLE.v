@@ -65,16 +65,21 @@ always @(*) begin
             end
             else begin
                 update = 1'd0;
-                if (top_left != 4'd0)
+                if (top_left != 4'd0) begin
                     gold_label = top_left;
-                else if (top != 4'd0)
+                end
+                else if (top != 4'd0) begin
                     gold_label = top;
-                else if (top_right != 4'd0)
+                end
+                else if (top_right != 4'd0) begin
                     gold_label = top_right;
-                else if (left != 4'd0)
+                end
+                else if (left != 4'd0) begin
                     gold_label = left;
-                else
+                end
+                else begin
                     gold_label = new_label;
+                end
 
                 if (top_left != 4'd0 && top_right != 4'd0 && top_left != top_right) begin
                     eq = 2'd1;
@@ -94,23 +99,12 @@ always @(*) begin
             update = 1'd0;
             check_eq = 1'd0;
             eq = 2'd0;
-            if (eq_table[buffer][0]) gold_label = 4'd0;
-            else if (eq_table[buffer][1]) gold_label = 4'd1;
-            else if (eq_table[buffer][2]) gold_label = 4'd2;
-            else if (eq_table[buffer][3]) gold_label = 4'd3;
-            else if (eq_table[buffer][4]) gold_label = 4'd4;
-            else if (eq_table[buffer][5]) gold_label = 4'd5;
-            else if (eq_table[buffer][6]) gold_label = 4'd6;
-            else if (eq_table[buffer][7]) gold_label = 4'd7;
-            else if (eq_table[buffer][8]) gold_label = 4'd8;
-            else if (eq_table[buffer][9]) gold_label = 4'd9;
-            else if (eq_table[buffer][10]) gold_label = 4'd10;
-            else if (eq_table[buffer][11]) gold_label = 4'd11;
-            else if (eq_table[buffer][12]) gold_label = 4'd12;
-            else if (eq_table[buffer][13]) gold_label = 4'd13;
-            else if (eq_table[buffer][14]) gold_label = 4'd14;
-            else if (eq_table[buffer][15]) gold_label = 4'd15;
-            else gold_label = buffer;
+            gold_label = buffer;
+            for (i=15; i>=0; i=i-1) begin
+                if (eq_table[buffer][i] == 1'b1) begin
+                    gold_label = i[3:0];
+                end
+            end
         end
     end
     else begin
@@ -152,16 +146,10 @@ always @(posedge clk or posedge reset) begin
                 if (Y == 5'd31) begin
                     X <= X + 5'd1;
                 end
-                else begin
-                    X <= X;
-                end
 
                 if (Y[2:0] == 3'd7) begin
                     rom_a <= rom_a + 7'd1;
                     img <= rom_q;
-                end
-                else begin
-                    rom_a <= rom_a;
                 end
 
                 if (update) begin
@@ -207,16 +195,10 @@ always @(posedge clk or posedge reset) begin
                     if (Y == 5'd31) begin
                         X <= X + 5'd1;
                     end
-                    else begin
-                        X <= X;
-                    end
 
                     if (Y[2:0] == 3'd7) begin
                         rom_a <= rom_a + 7'd1;
                         img <= rom_q;
-                    end
-                    else begin
-                        rom_a <= rom_a;
                     end
 
                     if (X == 5'd31 && Y == 5'd31) begin
@@ -237,16 +219,10 @@ always @(posedge clk or posedge reset) begin
                 if (Y == 5'd31) begin
                     X <= X + 5'd1;
                 end
-                else begin
-                    X <= X;
-                end
 
                 if (Y[2:0] == 3'd7) begin
                     rom_a <= rom_a + 7'd1;
                     img <= rom_q;
-                end
-                else begin
-                    rom_a <= rom_a;
                 end
             end
         endcase
