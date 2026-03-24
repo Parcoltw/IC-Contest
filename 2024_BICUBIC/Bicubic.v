@@ -379,7 +379,7 @@ always @(posedge CLK or posedge RST) begin
         x2_reg1 <= 16'd0;  x_reg1 <= 16'd0;
     end else begin
         a_2_reg1 <= a_2_w; b_2_reg1 <= b_2_w; c_2_reg1 <= c_2_w; d_2_reg1 <= d_2_w;
-        x2_reg1 <= x2_w;   x_reg1 <= x;
+        x2_reg1 <= x2_w; x_reg1 <= x;
     end
 end
 
