@@ -1,0 +1,106 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : Bicubic
+Version: Q-2019.12
+Date   : Wed Mar 25 00:11:22 2026
+****************************************
+
+Operating Conditions: slow   Library: slow
+Wire Load Model Mode: top
+
+  Startpoint: u_ALU/c_2_reg1_reg[2]
+              (rising edge-triggered flip-flop clocked by CLK)
+  Endpoint: u_ALU/term_c_reg2_reg[28]
+            (rising edge-triggered flip-flop clocked by CLK)
+  Path Group: CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Bicubic            tsmc13_wl10           slow
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock CLK (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.50       0.50
+  u_ALU/c_2_reg1_reg[2]/CK (DFFRX2)                       0.00       0.50 r
+  u_ALU/c_2_reg1_reg[2]/QN (DFFRX2)                       0.58       1.08 f
+  U11750/Y (BUFX4)                                        0.55       1.63 f
+  U8640/Y (AOI2BB2X2)                                     0.58       2.21 r
+  U4708/Y (CLKINVX1)                                      0.35       2.56 f
+  U6774/Y (NAND2X1)                                       0.36       2.92 r
+  U1126/Y (CLKINVX3)                                      0.70       3.62 f
+  U9482/Y (AOI222X1)                                      0.67       4.30 r
+  U3544/Y (AOI2BB2X1)                                     0.32       4.62 r
+  U11884/CO (ADDHX1)                                      0.26       4.88 r
+  U1077/CO (ADDHXL)                                       0.31       5.19 r
+  U3554/CO (ADDFXL)                                       0.81       5.99 r
+  U4067/CO (ADDFX2)                                       0.34       6.33 r
+  U5713/CO (ADDFX2)                                       0.42       6.75 r
+  U4245/Y (CLKINVX1)                                      0.17       6.92 f
+  U5683/Y (NOR2X1)                                        0.23       7.15 r
+  U5670/Y (MXI2X1)                                        0.23       7.38 f
+  U5651/Y (NAND3X2)                                       0.30       7.67 r
+  U5092/Y (CLKINVX1)                                      0.18       7.86 f
+  U5621/Y (NOR2X1)                                        0.23       8.09 r
+  U9504/Y (MXI2X1)                                        0.23       8.32 f
+  U11783/Y (NAND3X2)                                      0.29       8.61 r
+  U5601/Y (CLKINVX1)                                      0.18       8.79 f
+  U5595/Y (NOR2X1)                                        0.23       9.02 r
+  U9503/Y (MXI2X1)                                        0.21       9.23 f
+  U3527/Y (NAND3X1)                                       0.53       9.76 r
+  U5581/Y (CLKINVX1)                                      0.25      10.01 f
+  U6493/Y (NOR2X1)                                        0.27      10.28 r
+  U4216/Y (MXI2X2)                                        0.19      10.46 f
+  U4001/Y (NAND3X2)                                       0.26      10.73 r
+  U3484/Y (INVXL)                                         0.19      10.92 f
+  U6480/Y (NOR2X1)                                        0.26      11.18 r
+  U5567/Y (MXI2X2)                                        0.18      11.36 f
+  U3524/Y (NAND3X1)                                       0.50      11.85 r
+  U5564/Y (CLKINVX1)                                      0.24      12.10 f
+  U5559/Y (NOR2X1)                                        0.27      12.37 r
+  U9906/Y (MXI2X2)                                        0.19      12.55 f
+  U3995/Y (NAND3X2)                                       0.27      12.83 r
+  U5050/Y (CLKINVX1)                                      0.18      13.01 f
+  U6455/Y (NOR2X1)                                        0.25      13.26 r
+  U5547/Y (MXI2X2)                                        0.19      13.45 f
+  U3990/Y (NAND3X2)                                       0.30      13.75 r
+  U5542/Y (CLKINVX1)                                      0.17      13.93 f
+  U3492/Y (NOR2XL)                                        0.39      14.31 r
+  U462/Y (MXI2X1)                                         0.27      14.58 f
+  U3988/Y (NAND3X2)                                       0.30      14.88 r
+  U6430/Y (XOR2X1)                                        0.32      15.19 r
+  U11816/Y (XOR2X1)                                       0.28      15.48 f
+  U3559/CO (ADDFXL)                                       0.71      16.19 f
+  U4539/CO (ADDFX2)                                       0.40      16.59 f
+  U4535/CO (ADDFX2)                                       0.37      16.96 f
+  U4529/CO (ADDFX2)                                       0.37      17.32 f
+  U4525/CO (ADDFX2)                                       0.37      17.69 f
+  U4523/CO (ADDFX2)                                       0.36      18.05 f
+  U3558/CO (ADDFXL)                                       0.50      18.55 f
+  U4516/CO (ADDFX2)                                       0.40      18.96 f
+  U4512/CO (ADDFX2)                                       0.37      19.32 f
+  U6400/CO (ADDFX2)                                       0.37      19.69 f
+  U6395/CO (ADDFX2)                                       0.36      20.05 f
+  U5490/Y (CLKINVX1)                                      0.12      20.16 r
+  u_ALU/term_c_reg2_reg[28]/D (DFFRX1)                    0.00      20.16 r
+  data arrival time                                                 20.16
+
+  clock CLK (rise edge)                                  20.00      20.00
+  clock network delay (ideal)                             0.50      20.50
+  clock uncertainty                                      -0.10      20.40
+  u_ALU/term_c_reg2_reg[28]/CK (DFFRX1)                   0.00      20.40 r
+  library setup time                                     -0.24      20.16
+  data required time                                                20.16
+  --------------------------------------------------------------------------
+  data required time                                                20.16
+  data arrival time                                                -20.16
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
