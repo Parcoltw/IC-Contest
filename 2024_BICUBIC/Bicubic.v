@@ -12,21 +12,22 @@ output reg DONE;
 integer i;
 reg [2:0] cs, ns;
 reg [3:0] cnt;
+reg [1:0] wait_cnt;
 reg [1:0] mode;
 reg [7:0] fifo1 [0:3];
 reg [7:0] fifo2 [0:3];
 reg [7:0] result;
-    
 reg [7:0] alu_pn1, alu_p0, alu_p1, alu_p2;
 reg [15:0] alu_x;
 wire [7:0] Px;
+
 reg [13:0] rom_a;
 reg rom_cen;
 wire [7:0] rom_q;
 reg [13:0] sram_a;
 reg sram_wen;
 wire [7:0] sram_q;
-    
+
 reg [5:0] Target_X, Target_Y;
 wire is_last_X = (Target_X == TW - 6'd1);
 wire is_last_Y = (Target_Y == TH - 6'd1);
@@ -51,7 +52,7 @@ localparam FINISH = 3'd7;
 
 ImgROM u_ImgROM (.Q(rom_q), .CLK(CLK), .CEN(rom_cen), .A(rom_a));
 ResultSRAM u_ResultSRAM (.Q(sram_q), .CLK(CLK), .CEN(1'd0), .WEN(sram_wen), .A(sram_a), .D(result));
-ALU u_ALU (.Pn1(alu_pn1), .P0(alu_p0), .P1(alu_p1), .P2(alu_p2), .x(alu_x), .Px(Px));
+ALU u_ALU (.CLK(CLK), .RST(RST), .Pn1(alu_pn1), .P0(alu_p0), .P1(alu_p1), .P2(alu_p2), .x(alu_x), .Px(Px));
 
 
 always @(*) begin
@@ -62,6 +63,25 @@ always @(*) begin
     end
     else begin
         sram_wen = 1'd1;
+    end
+end
+
+always @(posedge CLK or posedge RST) begin
+    if (RST) begin
+        wait_cnt <= 2'd0;
+    end
+    else begin
+        if (cs == CALC || cs == RESULT) begin
+            if (wait_cnt == 2'd2) begin
+                wait_cnt <= 2'd0;
+            end
+            else begin
+                wait_cnt <= wait_cnt + 2'd1;
+            end
+        end
+        else begin
+            wait_cnt <= 2'd0;
+        end
     end
 end
 
@@ -130,9 +150,11 @@ always @(posedge CLK or posedge RST) begin
         end
     end
     else if (cs == CALC) begin
-        fifo2[3] <= Px;
-        for (i=0; i<=2; i=i+1) begin
-            fifo2[i] <= fifo2[i+1];
+        if (wait_cnt == 2'd2) begin
+            fifo2[3] <= Px;
+            for (i=0; i<=2; i=i+1) begin
+                fifo2[i] <= fifo2[i+1];
+            end
         end
     end
 end
@@ -240,7 +262,9 @@ always @(posedge CLK or posedge RST) begin
             end
 
             RESULT: begin
-                result <= Px;
+                if (wait_cnt == 2'd2) begin
+                    result <= Px;
+                end
             end
 
             WRITE: begin
@@ -288,16 +312,26 @@ always @(*) begin
         end
 
         CALC: begin
-            if (cnt == 4'd0) begin
-                ns = RESULT;
+            if (wait_cnt == 2'd2) begin
+                if (cnt == 4'd0) begin
+                    ns = RESULT;
+                end
+                else begin
+                    ns = REQ;
+                end
             end
             else begin
-                ns = REQ;
+                ns = CALC;
             end
         end
 
         RESULT: begin
-            ns = WRITE;
+            if (wait_cnt == 2'd2) begin
+                ns = WRITE;
+            end
+            else begin
+                ns = RESULT;
+            end
         end
 
         WRITE: begin
@@ -318,30 +352,58 @@ end
 endmodule
 
 
-module ALU (Pn1, P0, P1, P2, x, Px);
+module ALU (CLK, RST, Pn1, P0, P1, P2, x, Px);
+input CLK;
+input RST;
 input [7:0] Pn1, P0, P1, P2;
-input [15:0] x; 
+input [15:0] x;
 output [7:0] Px;
-
-wire [15:0] x2 = (({16'd0, x} * x) + 32'd32768) >> 16;
-wire [15:0] x3 = (({16'd0, x2} * x) + 32'd32768) >> 16;
 
 wire signed [8:0] s_Pn1 = $signed({1'b0, Pn1});
 wire signed [8:0] s_P0  = $signed({1'b0, P0});
 wire signed [8:0] s_P1  = $signed({1'b0, P1});
 wire signed [8:0] s_P2  = $signed({1'b0, P2});
 
-wire signed [11:0] a_2 = -s_Pn1 + 3*s_P0 - 3*s_P1 + s_P2;
-wire signed [11:0] b_2 = 2*s_Pn1 - 5*s_P0 + 4*s_P1 - s_P2;
-wire signed [11:0] c_2 = -s_Pn1 + s_P1;
-wire signed [11:0] d_2 = 2*s_P0;
+wire signed [11:0] a_2_w = -s_Pn1 + (s_P0 <<< 1) + s_P0 - (s_P1 <<< 1) - s_P1 + s_P2;
+wire signed [11:0] b_2_w = (s_Pn1 <<< 1) - (s_P0 <<< 2) - s_P0 + (s_P1 <<< 2) - s_P2;
+wire signed [11:0] c_2_w = -s_Pn1 + s_P1;
+wire signed [11:0] d_2_w = (s_P0 <<< 1);
+wire [15:0] x2_w = (({16'd0, x} * x) + 32'd32768) >> 16;
 
-wire signed [28:0] term_a = a_2 * $signed({1'b0, x3});
-wire signed [28:0] term_b = b_2 * $signed({1'b0, x2});
-wire signed [28:0] term_c = c_2 * $signed({1'b0, x});
-wire signed [28:0] term_d = d_2 <<< 16; 
+reg signed [11:0] a_2_reg1, b_2_reg1, c_2_reg1, d_2_reg1;
+reg [15:0] x2_reg1, x_reg1;
 
-wire signed [29:0] sum = term_a + term_b + term_c + term_d;
+always @(posedge CLK or posedge RST) begin
+    if (RST) begin
+        a_2_reg1 <= 12'd0; b_2_reg1 <= 12'd0; c_2_reg1 <= 12'd0; d_2_reg1 <= 12'd0;
+        x2_reg1 <= 16'd0;  x_reg1 <= 16'd0;
+    end else begin
+        a_2_reg1 <= a_2_w; b_2_reg1 <= b_2_w; c_2_reg1 <= c_2_w; d_2_reg1 <= d_2_w;
+        x2_reg1 <= x2_w;   x_reg1 <= x;
+    end
+end
+
+wire [15:0] x3_w = (({16'd0, x2_reg1} * x_reg1) + 32'd32768) >> 16;
+wire signed [28:0] term_b_w = b_2_reg1 * $signed({1'b0, x2_reg1});
+wire signed [28:0] term_c_w = c_2_reg1 * $signed({1'b0, x_reg1});
+
+reg signed [11:0] a_2_reg2, d_2_reg2;
+reg [15:0] x3_reg2;
+reg signed [28:0] term_b_reg2, term_c_reg2;
+
+always @(posedge CLK or posedge RST) begin
+    if (RST) begin
+        a_2_reg2 <= 12'd0; d_2_reg2 <= 12'd0; x3_reg2 <= 16'd0;
+        term_b_reg2 <= 29'd0; term_c_reg2 <= 29'd0;
+    end else begin
+        a_2_reg2 <= a_2_reg1; d_2_reg2 <= d_2_reg1; x3_reg2 <= x3_w;
+        term_b_reg2 <= term_b_w; term_c_reg2 <= term_c_w;
+    end
+end
+
+wire signed [28:0] term_a_w = a_2_reg2 * $signed({1'b0, x3_reg2});
+wire signed [28:0] term_d_w = d_2_reg2 <<< 16;
+wire signed [29:0] sum = term_a_w + term_b_reg2 + term_c_reg2 + term_d_w;
 wire signed [29:0] sum_rnd = sum + 30'sd65536; 
 wire signed [29:0] P_result = sum_rnd >>> 17;
 
