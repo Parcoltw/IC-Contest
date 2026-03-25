@@ -1,0 +1,91 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : REFRACT
+Version: Q-2019.12
+Date   : Wed Mar 25 20:14:24 2026
+****************************************
+
+Operating Conditions: slow   Library: slow
+Wire Load Model Mode: top
+
+  Startpoint: div_D_pipe_reg[11][0]
+              (rising edge-triggered flip-flop clocked by CLK)
+  Endpoint: div_R_pipe_reg[12][0]
+            (rising edge-triggered flip-flop clocked by CLK)
+  Path Group: CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  REFRACT            tsmc13_wl10           slow
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock CLK (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.50       0.50
+  div_D_pipe_reg[11][0]/CK (DFFQX1)        0.00       0.50 r
+  div_D_pipe_reg[11][0]/Q (DFFQX1)         0.49       0.99 r
+  U7341/Y (INVXL)                          0.27       1.26 f
+  U4395/Y (NOR2XL)                         0.70       1.96 r
+  U6143/Y (NOR2X1)                         0.34       2.30 f
+  U4344/Y (OAI21XL)                        0.79       3.09 r
+  U6111/Y (NOR2X1)                         0.37       3.46 f
+  U6939/Y (OAI21XL)                        0.79       4.25 r
+  U6039/Y (NOR2X1)                         0.37       4.62 f
+  U6940/Y (OAI21XL)                        0.79       5.42 r
+  U5935/Y (NOR2X1)                         0.38       5.79 f
+  U6200/Y (OAI21X1)                        0.46       6.25 r
+  U5892/Y (NOR2X1)                         0.28       6.53 f
+  U4290/Y (OAI21XL)                        0.75       7.28 r
+  U4848/Y (NOR2X1)                         0.36       7.64 f
+  U6941/Y (OAI21XL)                        0.79       8.44 r
+  U5767/Y (NOR2X1)                         0.37       8.80 f
+  U6942/Y (OAI21XL)                        0.79       9.60 r
+  U5695/Y (NOR2X1)                         0.37       9.97 f
+  U6943/Y (OAI21XL)                        0.79      10.76 r
+  U5582/Y (NOR2X1)                         0.37      11.13 f
+  U6944/Y (OAI21XL)                        0.79      11.93 r
+  U5517/Y (NOR2X1)                         0.38      12.30 f
+  U4808/Y (OAI21X1)                        0.46      12.76 r
+  U4800/Y (NOR2X1)                         0.29      13.05 f
+  U6199/Y (OAI21X1)                        0.43      13.48 r
+  U5376/Y (NOR2X1)                         0.28      13.76 f
+  U6945/Y (OAI21XL)                        0.77      14.54 r
+  U5306/Y (NOR2X1)                         0.37      14.90 f
+  U6946/Y (OAI21XL)                        0.77      15.67 r
+  U4475/Y (NOR2XL)                         0.44      16.12 f
+  U6947/Y (OAI21XL)                        0.82      16.93 r
+  U5160/Y (NOR2X1)                         0.37      17.30 f
+  U4396/Y (OAI21XL)                        0.79      18.10 r
+  U4704/Y (NOR2X1)                         0.38      18.48 f
+  U5080/Y (OAI21X1)                        0.46      18.93 r
+  U4544/Y (NOR2X1)                         0.29      19.22 f
+  U5018/Y (OAI21X1)                        0.43      19.66 r
+  U4655/Y (NOR2X1)                         0.29      19.94 f
+  U4976/Y (OAI21X1)                        0.43      20.38 r
+  U4639/Y (NAND2X1)                        0.27      20.65 f
+  U4586/Y (AOI211X1)                       0.43      21.08 r
+  U4540/Y (BUFX8)                          0.37      21.44 r
+  U7633/Y (NOR2XL)                         0.29      21.73 f
+  U13830/Y (AOI2BB2X1)                     0.36      22.09 f
+  div_R_pipe_reg[12][0]/D (DFFQX1)         0.00      22.09 f
+  data arrival time                                  22.09
+
+  clock CLK (rise edge)                   22.00      22.00
+  clock network delay (ideal)              0.50      22.50
+  clock uncertainty                       -0.10      22.40
+  div_R_pipe_reg[12][0]/CK (DFFQX1)        0.00      22.40 r
+  library setup time                      -0.30      22.10
+  data required time                                 22.10
+  -----------------------------------------------------------
+  data required time                                 22.10
+  data arrival time                                 -22.09
+  -----------------------------------------------------------
+  slack (MET)                                         0.01
+
+
+1
