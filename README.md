@@ -1,8 +1,8 @@
 # IC Contest
 
-| Year | Problem            |   Area   |  Clock  | Grade |
-|------|--------------------|----------|-------|---------|
-| 2016 | CLE                |          |  6 ns |    A    |
+| Year | Problem            |   Total Cell Area   |  Clock  | Grade |
+|------|--------------------|---------------------|---------|-------|
+| 2016 | CLE                | 27850.938902        |  6 ns |    A    |
 | 2018 | HC                 |          |  8 ns |    A    |
 | 2022 | JAM                |          | 10 ns |    A    |
 | 2024 | BICUBIC            |          | 50 ns |    A    |
